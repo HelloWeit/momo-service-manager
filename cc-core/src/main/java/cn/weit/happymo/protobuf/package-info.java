@@ -1,0 +1,1 @@
+package cn.weit.happymo.protobuf;
