@@ -1,0 +1,14 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /ccs
+netty:
+  server:
+    port: 18000
+logging:
+  file: ../logs/cc-server.log
+  level:
+    org.springframework: INFO
+    cn.weit.happymo: DEBUG
+    cn.hx.mall.dao: DEBUG
+    com.baomidou.dynamic: DEBUG
