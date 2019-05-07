@@ -1,6 +1,5 @@
 package cn.weit.happymo.handler;
 
-import cn.weit.happymo.message.MoRequest;
 import cn.weit.happymo.message.MoRequest.MoRequestMsg;
 import cn.weit.happymo.message.MsgTypeEnum;
 import io.netty.channel.ChannelHandlerContext;
