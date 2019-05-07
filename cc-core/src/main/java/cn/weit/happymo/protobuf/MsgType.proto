@@ -1,10 +1,11 @@
 syntax = "proto3";
 
-package cn.weit.happymo.protobuf;
+package cn.weit.happymo.message;
 
 option java_outer_classname = "MsgTypeEnum";
 
 enum MsgType {
     HEARTBEAT = 0;
-    OTHER = 1; //todo 待修改
+    SERVER = 1;
+    API = 2;
 }

@@ -1,8 +1,8 @@
 package cn.weit.happymo.handler;
 
-import cn.weit.happymo.protobuf.HeartBeatInfo;
-import cn.weit.happymo.protobuf.HeartBeatInfo.HeartBeat;
-import cn.weit.happymo.protobuf.MsgTypeEnum;
+import cn.weit.happymo.message.MoRequest;
+import cn.weit.happymo.message.MoRequest.MoRequestMsg;
+import cn.weit.happymo.message.MsgTypeEnum;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -31,15 +31,15 @@ public class HeartbeatHandler extends ChannelInboundHandlerAdapter {
 
     }
 
-//    @Override
-//    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-//        if (msg instanceof HeartBeat) {
-//            HeartBeat packet = (HeartBeat) msg;
-//            if (packet.getMsgType().equals(MsgTypeEnum.MsgType.HEARTBEAT)) {
-//                ReferenceCountUtil.release(packet);
-//            }
-//        }
-//    }
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        if (msg instanceof MoRequestMsg) {
+            MoRequestMsg packet = (MoRequestMsg) msg;
+            if (packet.getMsgType().equals(MsgTypeEnum.MsgType.HEARTBEAT)) {
+                ReferenceCountUtil.release(packet);
+            }
+        }
+    }
 
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
@@ -58,5 +58,6 @@ public class HeartbeatHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         log.error("connect exception", cause);
+        ctx.close();
     }
 }
