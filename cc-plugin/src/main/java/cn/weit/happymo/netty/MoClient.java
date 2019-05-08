@@ -37,6 +37,7 @@ public class MoClient {
             b.group(group).channel(NioSocketChannel.class).option(ChannelOption.SO_KEEPALIVE, true);
             b.remoteAddress(new InetSocketAddress(host, port));
             b.handler(new ChannelInitializer<SocketChannel>() {
+                @Override
                 public void initChannel(SocketChannel ch) throws Exception {
                     ChannelPipeline pipeline = ch.pipeline();
                     pipeline.addLast(new ProtobufVarint32FrameDecoder())

@@ -23,19 +23,12 @@ public class NettyServer {
     @Autowired
     private NettyServerInitializer nettyServerInitializer;
 
-    private ServerBootstrap server;
-
-    public NettyServer() {
+    void start() {
         EventLoopGroup mainGroup = new NioEventLoopGroup();
         EventLoopGroup subGroup = new NioEventLoopGroup();
-        server = new ServerBootstrap();
-        server.group(mainGroup, subGroup)
-                .channel(NioServerSocketChannel.class)
+        ServerBootstrap server = new ServerBootstrap();
+        server.group(mainGroup, subGroup).channel(NioServerSocketChannel.class)
                 .childHandler(nettyServerInitializer);
-    }
-
-
-    void start() {
         ChannelFuture future = server.bind(port);
         future.addListener((ChannelFutureListener) future1 -> {
             if(future1.isSuccess()){

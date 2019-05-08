@@ -1,9 +1,13 @@
 package cn.weit.happymo;
 
 import cn.weit.happymo.dto.RegisterInfo;
+import cn.weit.happymo.exception.ExceptionCode;
+import cn.weit.happymo.exception.MoException;
 import cn.weit.happymo.message.MoRequest;
 import cn.weit.happymo.netty.MoClient;
 
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,22 +19,29 @@ public final class Mo {
 
     private MoClient moClient;
 
-    private volatile static Mo instance;
+    private volatile static Mo moInstance;
 
-    private static Mo instance(String addr) throws InterruptedException {
-        if (instance == null) {
+    private static Mo instance(String addr, String localIp, int localPort, String serverName) throws InterruptedException {
+        if (moInstance == null) {
             synchronized (Mo.class) {
-                if (instance == null) {
-                    instance = new Mo();
-                    instance.init(addr).start();
+                if (moInstance == null) {
+                    moInstance = new Mo();
+                    moInstance.init(addr).start(localIp, localPort, serverName);
                 }
             }
         }
-        return instance;
+        return moInstance;
     }
 
-    public static Mo builder(String addr) throws InterruptedException {
-        return Mo.instance(addr);
+    public static Mo getInstance() {
+        if (moInstance == null) {
+            throw new MoException(ExceptionCode.INIT_ERROR);
+        }
+        return moInstance;
+    }
+
+    public static Mo newBuilder(String addr, String localIp, int localPort, String serverName) throws InterruptedException {
+        return Mo.instance(addr, localIp, localPort, serverName);
     }
 
     private Mo init(String addr) {
@@ -38,11 +49,22 @@ public final class Mo {
         int port = 0;
         String host = "";
         this.moClient = new MoClient(host, port);
-        return instance;
+        return moInstance;
     }
 
-    private void start() throws InterruptedException {
+    private void start(String localIp, int localPort, String serverName) throws InterruptedException {
         moClient.start();
+        notifyOnline(localIp, localPort, serverName);
+    }
+
+    private void notifyOnline(String localIp, int localPort, String serverName) {
+        RegisterInfo registerInfo = new RegisterInfo();
+        registerInfo.setIp(localIp);
+        registerInfo.setPort(localPort);
+        registerInfo.setServerName(serverName);
+        registerInfo.setStatus(1);
+        MoRequest.MoRequestMsg requestMsg = RegisterInfo.convert(registerInfo);
+        moClient.sendMsg(requestMsg);
     }
 
     public void register(RegisterInfo ... registerInfos) {
