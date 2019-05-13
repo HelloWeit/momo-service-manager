@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author weitong
  */
-@Component
+@Component("externalServer")
 @Slf4j
 public class ExternalServer {
     @Value("${external.server.netty.port}")

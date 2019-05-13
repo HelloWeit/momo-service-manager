@@ -22,10 +22,16 @@ public class CaffineCache {
     @Autowired
     private CacheManager cacheManager;
 
-    public List<InetSocketAddress> getAll() {
+    List<InetSocketAddress> getAll() {
         Cache cache = cacheManager.getCache(CACHE_NAME);
         ConcurrentMap<Object, Object> cacheMap =  ((CaffeineCache) Objects.requireNonNull(cache)).getNativeCache().asMap();
         return cacheMap.values().stream().map(InetSocketAddress.class::cast).collect(Collectors.toList());
     }
+
+    void addOne(String key, Object value) {
+        Cache cache = cacheManager.getCache(CACHE_NAME);
+        cache.put(key, value);
+    }
+
 
 }

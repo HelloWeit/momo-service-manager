@@ -12,12 +12,15 @@ import org.springframework.stereotype.Component;
 public class NettyBooter implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private ExternalServer externalServer;
+    @Autowired
+    private InternalServer internalServer;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         if (contextRefreshedEvent.getApplicationContext().getParent() == null) {
             try {
                 externalServer.start();
+                internalServer.scheduleTask();
             } catch (Exception e) {
                 e.printStackTrace();
             }

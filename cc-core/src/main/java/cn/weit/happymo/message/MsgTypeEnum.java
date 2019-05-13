@@ -32,9 +32,17 @@ public final class MsgTypeEnum {
      */
     API(2),
     /**
-     * <code>GOSSIP = 3;</code>
+     * <code>GOSSIP_PING = 3;</code>
      */
-    GOSSIP(3),
+    GOSSIP_PING(3),
+    /**
+     * <code>GOSSIP_SYNC = 4;</code>
+     */
+    GOSSIP_SYNC(4),
+    /**
+     * <code>GOSSIP_REQ = 5;</code>
+     */
+    GOSSIP_REQ(5),
     UNRECOGNIZED(-1),
     ;
 
@@ -51,9 +59,17 @@ public final class MsgTypeEnum {
      */
     public static final int API_VALUE = 2;
     /**
-     * <code>GOSSIP = 3;</code>
+     * <code>GOSSIP_PING = 3;</code>
      */
-    public static final int GOSSIP_VALUE = 3;
+    public static final int GOSSIP_PING_VALUE = 3;
+    /**
+     * <code>GOSSIP_SYNC = 4;</code>
+     */
+    public static final int GOSSIP_SYNC_VALUE = 4;
+    /**
+     * <code>GOSSIP_REQ = 5;</code>
+     */
+    public static final int GOSSIP_REQ_VALUE = 5;
 
 
     public final int getNumber() {
@@ -77,7 +93,9 @@ public final class MsgTypeEnum {
         case 0: return HEARTBEAT;
         case 1: return SERVER;
         case 2: return API;
-        case 3: return GOSSIP;
+        case 3: return GOSSIP_PING;
+        case 4: return GOSSIP_SYNC;
+        case 5: return GOSSIP_REQ;
         default: return null;
       }
     }
@@ -140,9 +158,9 @@ public final class MsgTypeEnum {
   static {
     java.lang.String[] descriptorData = {
       "\n\rMsgType.proto\022\027cn.weit.happymo.message" +
-      "*9\n\007MsgType\022\r\n\tHEARTBEAT\020\000\022\n\n\006SERVER\020\001\022\007" +
-      "\n\003API\020\002\022\n\n\006GOSSIP\020\003B\rB\013MsgTypeEnumb\006prot" +
-      "o3"
+      "*_\n\007MsgType\022\r\n\tHEARTBEAT\020\000\022\n\n\006SERVER\020\001\022\007" +
+      "\n\003API\020\002\022\017\n\013GOSSIP_PING\020\003\022\017\n\013GOSSIP_SYNC\020" +
+      "\004\022\016\n\nGOSSIP_REQ\020\005B\rB\013MsgTypeEnumb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

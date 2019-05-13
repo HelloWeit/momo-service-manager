@@ -1,14 +1,25 @@
 package cn.weit.happymo.config;
 
-import lombok.Data;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import cn.weit.happymo.server.netty.ExternalServerInitializer;
+import cn.weit.happymo.server.netty.InternalServer;
+import cn.weit.happymo.server.netty.InternalServerInitializer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@Component
-@Data
+/**
+ * @author weitong
+ */
+@Configuration
 public class NettyConfig {
-    @Value("${netty.server.external.port}")
-    private int externalPort;
-    @Value("${netty.server.internal.port}")
-    private int internalPort;
+
+    @Bean
+    InternalServerInitializer internalServerInitializer(InternalServer internalServer) {
+        return new InternalServerInitializer(internalServer);
+    }
+
+    @Bean
+    ExternalServerInitializer externalServerInitializer() {
+        return new ExternalServerInitializer();
+    }
+
 }

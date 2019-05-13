@@ -3,6 +3,7 @@ package cn.weit.happymo;
 import cn.weit.happymo.dto.RegisterInfo;
 import cn.weit.happymo.exception.ExceptionCode;
 import cn.weit.happymo.exception.MoException;
+import cn.weit.happymo.message.MoRequest;
 import cn.weit.happymo.server.MoClient;
 
 import java.util.Arrays;

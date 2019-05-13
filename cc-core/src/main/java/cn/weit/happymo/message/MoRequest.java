@@ -43,14 +43,14 @@ public final class MoRequest {
         getServerNameBytes();
 
     /**
-     * <code>string url = 4;</code>
+     * <code>string apiUrl = 4;</code>
      */
-    java.lang.String getUrl();
+    java.lang.String getApiUrl();
     /**
-     * <code>string url = 4;</code>
+     * <code>string apiUrl = 4;</code>
      */
     com.google.protobuf.ByteString
-        getUrlBytes();
+        getApiUrlBytes();
 
     /**
      * <code>string method = 5;</code>
@@ -63,20 +63,40 @@ public final class MoRequest {
         getMethodBytes();
 
     /**
-     * <code>.cn.weit.happymo.message.State state = 6;</code>
+     * <code>string ip = 6;</code>
+     */
+    java.lang.String getIp();
+    /**
+     * <code>string ip = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getIpBytes();
+
+    /**
+     * <code>int32 port = 7;</code>
+     */
+    int getPort();
+
+    /**
+     * <code>.cn.weit.happymo.message.State state = 8;</code>
      */
     int getStateValue();
     /**
-     * <code>.cn.weit.happymo.message.State state = 6;</code>
+     * <code>.cn.weit.happymo.message.State state = 8;</code>
      */
     cn.weit.happymo.message.ServerState.State getState();
 
     /**
-     * <code>map&lt;string, string&gt; map = 7;</code>
+     * <code>int64 updateTime = 9;</code>
+     */
+    long getUpdateTime();
+
+    /**
+     * <code>map&lt;string, string&gt; map = 10;</code>
      */
     int getMapCount();
     /**
-     * <code>map&lt;string, string&gt; map = 7;</code>
+     * <code>map&lt;string, string&gt; map = 10;</code>
      */
     boolean containsMap(
         java.lang.String key);
@@ -87,19 +107,19 @@ public final class MoRequest {
     java.util.Map<java.lang.String, java.lang.String>
     getMap();
     /**
-     * <code>map&lt;string, string&gt; map = 7;</code>
+     * <code>map&lt;string, string&gt; map = 10;</code>
      */
     java.util.Map<java.lang.String, java.lang.String>
     getMapMap();
     /**
-     * <code>map&lt;string, string&gt; map = 7;</code>
+     * <code>map&lt;string, string&gt; map = 10;</code>
      */
 
     java.lang.String getMapOrDefault(
         java.lang.String key,
         java.lang.String defaultValue);
     /**
-     * <code>map&lt;string, string&gt; map = 7;</code>
+     * <code>map&lt;string, string&gt; map = 10;</code>
      */
 
     java.lang.String getMapOrThrow(
@@ -120,8 +140,9 @@ public final class MoRequest {
     private MoRequestMsg() {
       msgType_ = 0;
       serverName_ = "";
-      url_ = "";
+      apiUrl_ = "";
       method_ = "";
+      ip_ = "";
       state_ = 0;
     }
 
@@ -169,7 +190,7 @@ public final class MoRequest {
             case 34: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              url_ = s;
+              apiUrl_ = s;
               break;
             }
             case 42: {
@@ -178,17 +199,33 @@ public final class MoRequest {
               method_ = s;
               break;
             }
-            case 48: {
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              ip_ = s;
+              break;
+            }
+            case 56: {
+
+              port_ = input.readInt32();
+              break;
+            }
+            case 64: {
               int rawValue = input.readEnum();
 
               state_ = rawValue;
               break;
             }
-            case 58: {
-              if (!((mutable_bitField0_ & 0x00000040) != 0)) {
+            case 72: {
+
+              updateTime_ = input.readInt64();
+              break;
+            }
+            case 82: {
+              if (!((mutable_bitField0_ & 0x00000200) != 0)) {
                 map_ = com.google.protobuf.MapField.newMapField(
                     MapDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000040;
+                mutable_bitField0_ |= 0x00000200;
               }
               com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
               map__ = input.readMessage(
@@ -226,7 +263,7 @@ public final class MoRequest {
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
       switch (number) {
-        case 7:
+        case 10:
           return internalGetMap();
         default:
           throw new RuntimeException(
@@ -302,34 +339,34 @@ public final class MoRequest {
       }
     }
 
-    public static final int URL_FIELD_NUMBER = 4;
-    private volatile java.lang.Object url_;
+    public static final int APIURL_FIELD_NUMBER = 4;
+    private volatile java.lang.Object apiUrl_;
     /**
-     * <code>string url = 4;</code>
+     * <code>string apiUrl = 4;</code>
      */
-    public java.lang.String getUrl() {
-      java.lang.Object ref = url_;
+    public java.lang.String getApiUrl() {
+      java.lang.Object ref = apiUrl_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        url_ = s;
+        apiUrl_ = s;
         return s;
       }
     }
     /**
-     * <code>string url = 4;</code>
+     * <code>string apiUrl = 4;</code>
      */
     public com.google.protobuf.ByteString
-        getUrlBytes() {
-      java.lang.Object ref = url_;
+        getApiUrlBytes() {
+      java.lang.Object ref = apiUrl_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        url_ = b;
+        apiUrl_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -370,16 +407,59 @@ public final class MoRequest {
       }
     }
 
-    public static final int STATE_FIELD_NUMBER = 6;
+    public static final int IP_FIELD_NUMBER = 6;
+    private volatile java.lang.Object ip_;
+    /**
+     * <code>string ip = 6;</code>
+     */
+    public java.lang.String getIp() {
+      java.lang.Object ref = ip_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        ip_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string ip = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIpBytes() {
+      java.lang.Object ref = ip_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        ip_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PORT_FIELD_NUMBER = 7;
+    private int port_;
+    /**
+     * <code>int32 port = 7;</code>
+     */
+    public int getPort() {
+      return port_;
+    }
+
+    public static final int STATE_FIELD_NUMBER = 8;
     private int state_;
     /**
-     * <code>.cn.weit.happymo.message.State state = 6;</code>
+     * <code>.cn.weit.happymo.message.State state = 8;</code>
      */
     public int getStateValue() {
       return state_;
     }
     /**
-     * <code>.cn.weit.happymo.message.State state = 6;</code>
+     * <code>.cn.weit.happymo.message.State state = 8;</code>
      */
     public cn.weit.happymo.message.ServerState.State getState() {
       @SuppressWarnings("deprecation")
@@ -387,7 +467,16 @@ public final class MoRequest {
       return result == null ? cn.weit.happymo.message.ServerState.State.UNRECOGNIZED : result;
     }
 
-    public static final int MAP_FIELD_NUMBER = 7;
+    public static final int UPDATETIME_FIELD_NUMBER = 9;
+    private long updateTime_;
+    /**
+     * <code>int64 updateTime = 9;</code>
+     */
+    public long getUpdateTime() {
+      return updateTime_;
+    }
+
+    public static final int MAP_FIELD_NUMBER = 10;
     private static final class MapDefaultEntryHolder {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.String> defaultEntry =
@@ -414,7 +503,7 @@ public final class MoRequest {
       return internalGetMap().getMap().size();
     }
     /**
-     * <code>map&lt;string, string&gt; map = 7;</code>
+     * <code>map&lt;string, string&gt; map = 10;</code>
      */
 
     public boolean containsMap(
@@ -430,14 +519,14 @@ public final class MoRequest {
       return getMapMap();
     }
     /**
-     * <code>map&lt;string, string&gt; map = 7;</code>
+     * <code>map&lt;string, string&gt; map = 10;</code>
      */
 
     public java.util.Map<java.lang.String, java.lang.String> getMapMap() {
       return internalGetMap().getMap();
     }
     /**
-     * <code>map&lt;string, string&gt; map = 7;</code>
+     * <code>map&lt;string, string&gt; map = 10;</code>
      */
 
     public java.lang.String getMapOrDefault(
@@ -449,7 +538,7 @@ public final class MoRequest {
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <code>map&lt;string, string&gt; map = 7;</code>
+     * <code>map&lt;string, string&gt; map = 10;</code>
      */
 
     public java.lang.String getMapOrThrow(
@@ -486,21 +575,30 @@ public final class MoRequest {
       if (!getServerNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, serverName_);
       }
-      if (!getUrlBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, url_);
+      if (!getApiUrlBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, apiUrl_);
       }
       if (!getMethodBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, method_);
       }
+      if (!getIpBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, ip_);
+      }
+      if (port_ != 0) {
+        output.writeInt32(7, port_);
+      }
       if (state_ != cn.weit.happymo.message.ServerState.State.Alive.getNumber()) {
-        output.writeEnum(6, state_);
+        output.writeEnum(8, state_);
+      }
+      if (updateTime_ != 0L) {
+        output.writeInt64(9, updateTime_);
       }
       com.google.protobuf.GeneratedMessageV3
         .serializeStringMapTo(
           output,
           internalGetMap(),
           MapDefaultEntryHolder.defaultEntry,
-          7);
+          10);
       unknownFields.writeTo(output);
     }
 
@@ -521,15 +619,26 @@ public final class MoRequest {
       if (!getServerNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, serverName_);
       }
-      if (!getUrlBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, url_);
+      if (!getApiUrlBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, apiUrl_);
       }
       if (!getMethodBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, method_);
       }
+      if (!getIpBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, ip_);
+      }
+      if (port_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(7, port_);
+      }
       if (state_ != cn.weit.happymo.message.ServerState.State.Alive.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(6, state_);
+          .computeEnumSize(8, state_);
+      }
+      if (updateTime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(9, updateTime_);
       }
       for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
            : internalGetMap().getMap().entrySet()) {
@@ -539,7 +648,7 @@ public final class MoRequest {
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(7, map__);
+            .computeMessageSize(10, map__);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -561,11 +670,17 @@ public final class MoRequest {
           != other.getVersion()) return false;
       if (!getServerName()
           .equals(other.getServerName())) return false;
-      if (!getUrl()
-          .equals(other.getUrl())) return false;
+      if (!getApiUrl()
+          .equals(other.getApiUrl())) return false;
       if (!getMethod()
           .equals(other.getMethod())) return false;
+      if (!getIp()
+          .equals(other.getIp())) return false;
+      if (getPort()
+          != other.getPort()) return false;
       if (state_ != other.state_) return false;
+      if (getUpdateTime()
+          != other.getUpdateTime()) return false;
       if (!internalGetMap().equals(
           other.internalGetMap())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -585,12 +700,19 @@ public final class MoRequest {
       hash = (53 * hash) + getVersion();
       hash = (37 * hash) + SERVERNAME_FIELD_NUMBER;
       hash = (53 * hash) + getServerName().hashCode();
-      hash = (37 * hash) + URL_FIELD_NUMBER;
-      hash = (53 * hash) + getUrl().hashCode();
+      hash = (37 * hash) + APIURL_FIELD_NUMBER;
+      hash = (53 * hash) + getApiUrl().hashCode();
       hash = (37 * hash) + METHOD_FIELD_NUMBER;
       hash = (53 * hash) + getMethod().hashCode();
+      hash = (37 * hash) + IP_FIELD_NUMBER;
+      hash = (53 * hash) + getIp().hashCode();
+      hash = (37 * hash) + PORT_FIELD_NUMBER;
+      hash = (53 * hash) + getPort();
       hash = (37 * hash) + STATE_FIELD_NUMBER;
       hash = (53 * hash) + state_;
+      hash = (37 * hash) + UPDATETIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUpdateTime());
       if (!internalGetMap().getMap().isEmpty()) {
         hash = (37 * hash) + MAP_FIELD_NUMBER;
         hash = (53 * hash) + internalGetMap().hashCode();
@@ -706,7 +828,7 @@ public final class MoRequest {
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
         switch (number) {
-          case 7:
+          case 10:
             return internalGetMap();
           default:
             throw new RuntimeException(
@@ -717,7 +839,7 @@ public final class MoRequest {
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
         switch (number) {
-          case 7:
+          case 10:
             return internalGetMutableMap();
           default:
             throw new RuntimeException(
@@ -756,11 +878,17 @@ public final class MoRequest {
 
         serverName_ = "";
 
-        url_ = "";
+        apiUrl_ = "";
 
         method_ = "";
 
+        ip_ = "";
+
+        port_ = 0;
+
         state_ = 0;
+
+        updateTime_ = 0L;
 
         internalGetMutableMap().clear();
         return this;
@@ -794,9 +922,12 @@ public final class MoRequest {
         result.msgType_ = msgType_;
         result.version_ = version_;
         result.serverName_ = serverName_;
-        result.url_ = url_;
+        result.apiUrl_ = apiUrl_;
         result.method_ = method_;
+        result.ip_ = ip_;
+        result.port_ = port_;
         result.state_ = state_;
+        result.updateTime_ = updateTime_;
         result.map_ = internalGetMap();
         result.map_.makeImmutable();
         result.bitField0_ = to_bitField0_;
@@ -858,16 +989,26 @@ public final class MoRequest {
           serverName_ = other.serverName_;
           onChanged();
         }
-        if (!other.getUrl().isEmpty()) {
-          url_ = other.url_;
+        if (!other.getApiUrl().isEmpty()) {
+          apiUrl_ = other.apiUrl_;
           onChanged();
         }
         if (!other.getMethod().isEmpty()) {
           method_ = other.method_;
           onChanged();
         }
+        if (!other.getIp().isEmpty()) {
+          ip_ = other.ip_;
+          onChanged();
+        }
+        if (other.getPort() != 0) {
+          setPort(other.getPort());
+        }
         if (other.state_ != 0) {
           setStateValue(other.getStateValue());
+        }
+        if (other.getUpdateTime() != 0L) {
+          setUpdateTime(other.getUpdateTime());
         }
         internalGetMutableMap().mergeFrom(
             other.internalGetMap());
@@ -1041,71 +1182,71 @@ public final class MoRequest {
         return this;
       }
 
-      private java.lang.Object url_ = "";
+      private java.lang.Object apiUrl_ = "";
       /**
-       * <code>string url = 4;</code>
+       * <code>string apiUrl = 4;</code>
        */
-      public java.lang.String getUrl() {
-        java.lang.Object ref = url_;
+      public java.lang.String getApiUrl() {
+        java.lang.Object ref = apiUrl_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          url_ = s;
+          apiUrl_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string url = 4;</code>
+       * <code>string apiUrl = 4;</code>
        */
       public com.google.protobuf.ByteString
-          getUrlBytes() {
-        java.lang.Object ref = url_;
+          getApiUrlBytes() {
+        java.lang.Object ref = apiUrl_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          url_ = b;
+          apiUrl_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string url = 4;</code>
+       * <code>string apiUrl = 4;</code>
        */
-      public Builder setUrl(
+      public Builder setApiUrl(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        url_ = value;
+        apiUrl_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string url = 4;</code>
+       * <code>string apiUrl = 4;</code>
        */
-      public Builder clearUrl() {
+      public Builder clearApiUrl() {
         
-        url_ = getDefaultInstance().getUrl();
+        apiUrl_ = getDefaultInstance().getApiUrl();
         onChanged();
         return this;
       }
       /**
-       * <code>string url = 4;</code>
+       * <code>string apiUrl = 4;</code>
        */
-      public Builder setUrlBytes(
+      public Builder setApiUrlBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        url_ = value;
+        apiUrl_ = value;
         onChanged();
         return this;
       }
@@ -1179,15 +1320,110 @@ public final class MoRequest {
         return this;
       }
 
+      private java.lang.Object ip_ = "";
+      /**
+       * <code>string ip = 6;</code>
+       */
+      public java.lang.String getIp() {
+        java.lang.Object ref = ip_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          ip_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string ip = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIpBytes() {
+        java.lang.Object ref = ip_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          ip_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string ip = 6;</code>
+       */
+      public Builder setIp(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        ip_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string ip = 6;</code>
+       */
+      public Builder clearIp() {
+        
+        ip_ = getDefaultInstance().getIp();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string ip = 6;</code>
+       */
+      public Builder setIpBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        ip_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int port_ ;
+      /**
+       * <code>int32 port = 7;</code>
+       */
+      public int getPort() {
+        return port_;
+      }
+      /**
+       * <code>int32 port = 7;</code>
+       */
+      public Builder setPort(int value) {
+        
+        port_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 port = 7;</code>
+       */
+      public Builder clearPort() {
+        
+        port_ = 0;
+        onChanged();
+        return this;
+      }
+
       private int state_ = 0;
       /**
-       * <code>.cn.weit.happymo.message.State state = 6;</code>
+       * <code>.cn.weit.happymo.message.State state = 8;</code>
        */
       public int getStateValue() {
         return state_;
       }
       /**
-       * <code>.cn.weit.happymo.message.State state = 6;</code>
+       * <code>.cn.weit.happymo.message.State state = 8;</code>
        */
       public Builder setStateValue(int value) {
         state_ = value;
@@ -1195,7 +1431,7 @@ public final class MoRequest {
         return this;
       }
       /**
-       * <code>.cn.weit.happymo.message.State state = 6;</code>
+       * <code>.cn.weit.happymo.message.State state = 8;</code>
        */
       public cn.weit.happymo.message.ServerState.State getState() {
         @SuppressWarnings("deprecation")
@@ -1203,7 +1439,7 @@ public final class MoRequest {
         return result == null ? cn.weit.happymo.message.ServerState.State.UNRECOGNIZED : result;
       }
       /**
-       * <code>.cn.weit.happymo.message.State state = 6;</code>
+       * <code>.cn.weit.happymo.message.State state = 8;</code>
        */
       public Builder setState(cn.weit.happymo.message.ServerState.State value) {
         if (value == null) {
@@ -1215,11 +1451,37 @@ public final class MoRequest {
         return this;
       }
       /**
-       * <code>.cn.weit.happymo.message.State state = 6;</code>
+       * <code>.cn.weit.happymo.message.State state = 8;</code>
        */
       public Builder clearState() {
         
         state_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private long updateTime_ ;
+      /**
+       * <code>int64 updateTime = 9;</code>
+       */
+      public long getUpdateTime() {
+        return updateTime_;
+      }
+      /**
+       * <code>int64 updateTime = 9;</code>
+       */
+      public Builder setUpdateTime(long value) {
+        
+        updateTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 updateTime = 9;</code>
+       */
+      public Builder clearUpdateTime() {
+        
+        updateTime_ = 0L;
         onChanged();
         return this;
       }
@@ -1251,7 +1513,7 @@ public final class MoRequest {
         return internalGetMap().getMap().size();
       }
       /**
-       * <code>map&lt;string, string&gt; map = 7;</code>
+       * <code>map&lt;string, string&gt; map = 10;</code>
        */
 
       public boolean containsMap(
@@ -1267,14 +1529,14 @@ public final class MoRequest {
         return getMapMap();
       }
       /**
-       * <code>map&lt;string, string&gt; map = 7;</code>
+       * <code>map&lt;string, string&gt; map = 10;</code>
        */
 
       public java.util.Map<java.lang.String, java.lang.String> getMapMap() {
         return internalGetMap().getMap();
       }
       /**
-       * <code>map&lt;string, string&gt; map = 7;</code>
+       * <code>map&lt;string, string&gt; map = 10;</code>
        */
 
       public java.lang.String getMapOrDefault(
@@ -1286,7 +1548,7 @@ public final class MoRequest {
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
-       * <code>map&lt;string, string&gt; map = 7;</code>
+       * <code>map&lt;string, string&gt; map = 10;</code>
        */
 
       public java.lang.String getMapOrThrow(
@@ -1306,7 +1568,7 @@ public final class MoRequest {
         return this;
       }
       /**
-       * <code>map&lt;string, string&gt; map = 7;</code>
+       * <code>map&lt;string, string&gt; map = 10;</code>
        */
 
       public Builder removeMap(
@@ -1325,7 +1587,7 @@ public final class MoRequest {
         return internalGetMutableMap().getMutableMap();
       }
       /**
-       * <code>map&lt;string, string&gt; map = 7;</code>
+       * <code>map&lt;string, string&gt; map = 10;</code>
        */
       public Builder putMap(
           java.lang.String key,
@@ -1337,7 +1599,7 @@ public final class MoRequest {
         return this;
       }
       /**
-       * <code>map&lt;string, string&gt; map = 7;</code>
+       * <code>map&lt;string, string&gt; map = 10;</code>
        */
 
       public Builder putAllMap(
@@ -1419,15 +1681,16 @@ public final class MoRequest {
   static {
     java.lang.String[] descriptorData = {
       "\n\017MoRequest.proto\022\027cn.weit.happymo.messa" +
-      "ge\032\rMsgType.proto\032\013State.proto\"\233\002\n\014MoReq" +
+      "ge\032\rMsgType.proto\032\013State.proto\"\314\002\n\014MoReq" +
       "uestMsg\0221\n\007msgType\030\001 \001(\0162 .cn.weit.happy" +
       "mo.message.MsgType\022\017\n\007version\030\002 \001(\005\022\022\n\ns" +
-      "erverName\030\003 \001(\t\022\013\n\003url\030\004 \001(\t\022\016\n\006method\030\005" +
-      " \001(\t\022-\n\005state\030\006 \001(\0162\036.cn.weit.happymo.me" +
-      "ssage.State\022;\n\003map\030\007 \003(\0132..cn.weit.happy" +
-      "mo.message.MoRequestMsg.MapEntry\032*\n\010MapE" +
-      "ntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001B\013B\t" +
-      "MoRequestP\000P\001b\006proto3"
+      "erverName\030\003 \001(\t\022\016\n\006apiUrl\030\004 \001(\t\022\016\n\006metho" +
+      "d\030\005 \001(\t\022\n\n\002ip\030\006 \001(\t\022\014\n\004port\030\007 \001(\005\022-\n\005sta" +
+      "te\030\010 \001(\0162\036.cn.weit.happymo.message.State" +
+      "\022\022\n\nupdateTime\030\t \001(\003\022;\n\003map\030\n \003(\0132..cn.w" +
+      "eit.happymo.message.MoRequestMsg.MapEntr" +
+      "y\032*\n\010MapEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(" +
+      "\t:\0028\001B\013B\tMoRequestP\000P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1448,7 +1711,7 @@ public final class MoRequest {
     internal_static_cn_weit_happymo_message_MoRequestMsg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_cn_weit_happymo_message_MoRequestMsg_descriptor,
-        new java.lang.String[] { "MsgType", "Version", "ServerName", "Url", "Method", "State", "Map", });
+        new java.lang.String[] { "MsgType", "Version", "ServerName", "ApiUrl", "Method", "Ip", "Port", "State", "UpdateTime", "Map", });
     internal_static_cn_weit_happymo_message_MoRequestMsg_MapEntry_descriptor =
       internal_static_cn_weit_happymo_message_MoRequestMsg_descriptor.getNestedTypes().get(0);
     internal_static_cn_weit_happymo_message_MoRequestMsg_MapEntry_fieldAccessorTable = new

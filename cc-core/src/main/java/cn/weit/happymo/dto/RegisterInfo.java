@@ -26,7 +26,7 @@ public class RegisterInfo {
         //todo 版本号需要一个递增的技术器来生成
         builder.setVersion(1);
         builder.setServerName(registerInfo.getServerName());
-        builder.setUrl(genUrl(registerInfo.getIp(), registerInfo.getPort(), registerInfo.getApi()));
+        builder.setApiUrl(genUrl(registerInfo.getIp(), registerInfo.getPort(), registerInfo.getApi()));
         builder.setMethod(registerInfo.getMethod());
         builder.setState(ServerState.State.Alive);
         return builder.build();

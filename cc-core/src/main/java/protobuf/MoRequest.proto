@@ -12,8 +12,11 @@ message MoRequestMsg {
     MsgType msgType = 1;
     int32 version = 2;
     string serverName = 3;
-    string url = 4;
+    string apiUrl = 4;
     string method = 5;
-    State state = 6;
-    map<string, string> map = 7;
+    string ip = 6;
+    int32 port = 7;
+    State state = 8;
+    int64 updateTime = 9;
+    map<string, string> map = 10;
 }
