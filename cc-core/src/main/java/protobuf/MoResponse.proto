@@ -2,12 +2,15 @@ syntax = "proto3";
 
 import public "MsgType.proto";
 
+import public "State.proto";
+
 package cn.weit.happymo.message;
 
 option java_outer_classname = "MoResponse";
 
 message MoResponseMsg {
     MsgType msgType = 1;
-    int32 status = 2;
-    string cause = 3;
+    int32 version = 2;
+    State state = 3;
+    string cause = 4;
 }

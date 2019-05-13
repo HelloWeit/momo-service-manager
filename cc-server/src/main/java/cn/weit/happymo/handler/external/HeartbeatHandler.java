@@ -1,9 +1,10 @@
-package cn.weit.happymo.handler;
+package cn.weit.happymo.handler.external;
 
 import cn.weit.happymo.message.MoRequest.MoRequestMsg;
 import cn.weit.happymo.message.MsgTypeEnum;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.ReferenceCountUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,7 @@ import static cn.weit.happymo.constant.Constants.MISS_PACKET_NUM;
 public class HeartbeatHandler extends ChannelInboundHandlerAdapter {
 
     private int counter = 0;
+
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -36,7 +38,9 @@ public class HeartbeatHandler extends ChannelInboundHandlerAdapter {
             MoRequestMsg packet = (MoRequestMsg) msg;
             if (packet.getMsgType().equals(MsgTypeEnum.MsgType.HEARTBEAT)) {
                 ReferenceCountUtil.release(packet);
+                return;
             }
+            ctx.fireChannelRead(msg);
         }
     }
 

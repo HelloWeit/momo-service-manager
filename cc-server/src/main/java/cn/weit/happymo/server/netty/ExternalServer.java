@@ -1,4 +1,4 @@
-package cn.weit.happymo.netty;
+package cn.weit.happymo.server.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -16,20 +16,20 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-public class NettyServer {
-    @Value("${netty.server.port}")
-    private int port;
+public class ExternalServer {
+    @Value("${external.server.netty.port}")
+    private int externalPort;
 
     @Autowired
-    private NettyServerInitializer nettyServerInitializer;
+    private ExternalServerInitializer externalServerInitializer;
 
     void start() {
         EventLoopGroup mainGroup = new NioEventLoopGroup();
         EventLoopGroup subGroup = new NioEventLoopGroup();
         ServerBootstrap server = new ServerBootstrap();
         server.group(mainGroup, subGroup).channel(NioServerSocketChannel.class)
-                .childHandler(nettyServerInitializer);
-        ChannelFuture future = server.bind(port);
+                .childHandler(externalServerInitializer);
+        ChannelFuture future = server.bind(externalPort);
         future.addListener((ChannelFutureListener) future1 -> {
             if(future1.isSuccess()){
                 log.info("Netty server started");

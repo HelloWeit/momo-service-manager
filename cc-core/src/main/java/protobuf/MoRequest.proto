@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import public "MsgType.proto";
+
+import public "State.proto";
+
+package cn.weit.happymo.message;
+
+option java_outer_classname = "MoRequest";
+
+message MoRequestMsg {
+    MsgType msgType = 1;
+    int32 version = 2;
+    string serverName = 3;
+    string url = 4;
+    string method = 5;
+    State state = 6;
+    map<string, string> map = 7;
+}

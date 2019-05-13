@@ -3,11 +3,8 @@ package cn.weit.happymo;
 import cn.weit.happymo.dto.RegisterInfo;
 import cn.weit.happymo.exception.ExceptionCode;
 import cn.weit.happymo.exception.MoException;
-import cn.weit.happymo.message.MoRequest;
-import cn.weit.happymo.netty.MoClient;
+import cn.weit.happymo.server.MoClient;
 
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

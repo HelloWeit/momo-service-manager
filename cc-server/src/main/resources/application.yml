@@ -2,9 +2,19 @@ server:
   port: 8000
   servlet:
     context-path: /ccs
-netty:
+
+internal:
   server:
-    port: 18000
+    netty:
+      port: 18000
+    num: 3
+    max: 300
+
+external:
+  server:
+    netty:
+      port: 18001
+
 logging:
   file: ../logs/cc-server.log
   level:

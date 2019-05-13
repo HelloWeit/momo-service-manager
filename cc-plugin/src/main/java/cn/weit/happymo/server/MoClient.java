@@ -1,4 +1,4 @@
-package cn.weit.happymo.netty;
+package cn.weit.happymo.server;
 
 import cn.weit.happymo.handler.MoResponseHandler;
 import cn.weit.happymo.message.MoRequest;

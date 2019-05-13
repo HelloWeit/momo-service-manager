@@ -1,4 +1,4 @@
-package cn.weit.happymo.netty;
+package cn.weit.happymo.server.netty;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class NettyBooter implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
-    private NettyServer nettyServer;
+    private ExternalServer externalServer;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         if (contextRefreshedEvent.getApplicationContext().getParent() == null) {
             try {
-                nettyServer.start();
+                externalServer.start();
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -1,7 +1,7 @@
-package cn.weit.happymo.netty;
+package cn.weit.happymo.server.netty;
 
-import cn.weit.happymo.handler.HeartbeatHandler;
-import cn.weit.happymo.handler.RegisterHandler;
+import cn.weit.happymo.handler.external.HeartbeatHandler;
+import cn.weit.happymo.handler.external.RegisterHandler;
 import cn.weit.happymo.message.MoRequest;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author weitong
  */
 @Component
-public class NettyServerInitializer extends ChannelInitializer<SocketChannel> {
+public class ExternalServerInitializer extends ChannelInitializer<SocketChannel> {
 
 	@Autowired
 	private HeartbeatHandler heartbeatHandler;

@@ -8,4 +8,5 @@ enum MsgType {
     HEARTBEAT = 0;
     SERVER = 1;
     API = 2;
+    GOSSIP = 3;
 }

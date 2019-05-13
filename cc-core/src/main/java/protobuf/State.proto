@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cn.weit.happymo.message;
+
+option java_outer_classname = "ServerState";
+
+
+enum State {
+    Alive = 0;
+    Suspect = 1;
+    Dead = 2;
+}
