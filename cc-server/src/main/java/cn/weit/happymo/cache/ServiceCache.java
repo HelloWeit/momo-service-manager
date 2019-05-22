@@ -3,11 +3,11 @@ package cn.weit.happymo.cache;
 import cn.weit.happymo.dto.HeartbeatInfo;
 import cn.weit.happymo.dto.SyncApiInfo;
 import com.google.common.collect.Lists;
+import io.netty.channel.Channel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.InetSocketAddress;
-import java.nio.channels.Channel;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;

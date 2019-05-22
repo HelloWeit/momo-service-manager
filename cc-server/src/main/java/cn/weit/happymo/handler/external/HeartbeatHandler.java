@@ -1,5 +1,7 @@
 package cn.weit.happymo.handler.external;
 
+import cn.weit.happymo.message.MoRequest.MoRequestMsg;
+import cn.weit.happymo.message.MsgTypeEnum;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;

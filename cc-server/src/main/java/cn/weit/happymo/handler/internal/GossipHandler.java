@@ -76,7 +76,7 @@ public class GossipHandler extends SimpleChannelInboundHandler<AddressedEnvelope
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        cause.printStackTrace();
+        log.error("",cause);
         ctx.close();
     }
 }
