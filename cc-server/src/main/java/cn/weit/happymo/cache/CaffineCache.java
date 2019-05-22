@@ -12,7 +12,8 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
 
-import static cn.weit.happymo.constant.Constants.CACHE_NAME;
+import static cn.weit.happymo.constant.Constants.NODE_CACHE_NAME;
+import static cn.weit.happymo.constant.Constants.SERVER_CACHE_NAME;
 
 /**
  * @author weitong
@@ -22,15 +23,25 @@ public class CaffineCache {
     @Autowired
     private CacheManager cacheManager;
 
-    List<InetSocketAddress> getAll() {
-        Cache cache = cacheManager.getCache(CACHE_NAME);
+    List<InetSocketAddress> getAllNode() {
+        Cache cache = cacheManager.getCache(NODE_CACHE_NAME);
         ConcurrentMap<Object, Object> cacheMap =  ((CaffeineCache) Objects.requireNonNull(cache)).getNativeCache().asMap();
         return cacheMap.values().stream().map(InetSocketAddress.class::cast).collect(Collectors.toList());
     }
 
-    void addOne(String key, Object value) {
-        Cache cache = cacheManager.getCache(CACHE_NAME);
+    void addOneNode(String key, Object value) {
+        Cache cache = cacheManager.getCache(NODE_CACHE_NAME);
         cache.put(key, value);
+    }
+
+    void addOneServer(String key, Object value) {
+        Cache cache = cacheManager.getCache(SERVER_CACHE_NAME);
+        cache.put(key, value);
+    }
+
+    void delOneServer(String key) {
+        Cache cache = cacheManager.getCache(SERVER_CACHE_NAME);
+        cache.evict(key);
     }
 
 

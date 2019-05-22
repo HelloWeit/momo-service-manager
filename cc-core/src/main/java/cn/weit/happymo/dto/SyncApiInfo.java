@@ -28,7 +28,21 @@ public class SyncApiInfo {
         syncApiInfo.setMethod(moRequestMsg.getMethod());
         syncApiInfo.setState(moRequestMsg.getState());
         syncApiInfo.setUpdateTime(moRequestMsg.getUpdateTime());
+        syncApiInfo.setVersion(moRequestMsg.getVersion());
         return syncApiInfo;
+    }
+
+    public static SyncApiInfo convert(RegisterInfo registerInfo) {
+        SyncApiInfo syncApiInfo = new SyncApiInfo();
+        syncApiInfo.setServerName(registerInfo.getServerName());
+        syncApiInfo.setApiUrl(registerInfo.getApi());
+        syncApiInfo.setMethod(registerInfo.getMethod());
+        syncApiInfo.setState(registerInfo.getStatus());
+        syncApiInfo.setUpdateTime(System.currentTimeMillis());
+        //todo 版本号需要一个递增的技术器来生成
+        syncApiInfo.setVersion(1);
+        return syncApiInfo;
+
     }
 
     public static MoRequestMsg convert(SyncApiInfo syncApiInfo) {

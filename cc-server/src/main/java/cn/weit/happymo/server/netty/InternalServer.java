@@ -2,6 +2,7 @@ package cn.weit.happymo.server.netty;
 
 import cn.weit.happymo.cache.ServiceCache;
 import cn.weit.happymo.dto.HeartbeatInfo;
+import cn.weit.happymo.message.MoRequest;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.*;
@@ -72,7 +73,17 @@ public class InternalServer {
         timer.newTimeout(task, TASK_DURATION * TASK_SLOT + 1,TimeUnit.SECONDS);
     }
 
-
+    public void randomSendMsg(MoRequest.MoRequestMsg moRequestMsg) {
+        List<InetSocketAddress> randomNodes= serviceCache.chooseSample(num);
+        randomNodes.forEach(intSocketAddress -> {
+            channel.writeAndFlush(
+                    new DefaultAddressedEnvelope<>(
+                            moRequestMsg,
+                            intSocketAddress,
+                            channel.localAddress()
+                    ));
+        });
+    }
 
 
 }

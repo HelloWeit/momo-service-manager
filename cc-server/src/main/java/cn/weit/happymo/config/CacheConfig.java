@@ -16,7 +16,8 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
-import static cn.weit.happymo.constant.Constants.CACHE_NAME;
+import static cn.weit.happymo.constant.Constants.NODE_CACHE_NAME;
+import static cn.weit.happymo.constant.Constants.SERVER_CACHE_NAME;
 
 /**
  * @author weitong
@@ -26,12 +27,16 @@ import static cn.weit.happymo.constant.Constants.CACHE_NAME;
 public class CacheConfig {
     private static final Logger LOG = LoggerFactory.getLogger(CacheConfig.class);
     @Value("${internal.server.max}")
-    private int maxNum;
+    private int nodeMaxNum;
+    @Value("${external.server.max}")
+    private int serverMaxNum;
+
     @Bean
     public CacheManager cacheManager() {
         SimpleCacheManager simpleCacheManager = new SimpleCacheManager();
-        CaffeineCache nodesCache = new CaffeineCache(CACHE_NAME, nodeCacheBuilder().build());
-        simpleCacheManager.setCaches(Arrays.asList(nodesCache));
+        CaffeineCache nodesCache = new CaffeineCache(NODE_CACHE_NAME, nodeCacheBuilder().build());
+        CaffeineCache serversCache = new CaffeineCache(SERVER_CACHE_NAME, serverCacheBuilder().build());
+        simpleCacheManager.setCaches(Arrays.asList(nodesCache,serversCache));
         simpleCacheManager.initializeCaches();
         return simpleCacheManager;
     }
@@ -39,7 +44,15 @@ public class CacheConfig {
     private Caffeine<Object, Object> nodeCacheBuilder() {
         return Caffeine.newBuilder()
                 .initialCapacity(50)
-                .maximumSize(maxNum)
+                .maximumSize(nodeMaxNum)
+                .expireAfterWrite(30, TimeUnit.SECONDS)
+                .removalListener(new CacheRemovalListener());
+    }
+
+    private Caffeine<Object, Object> serverCacheBuilder() {
+        return Caffeine.newBuilder()
+                .initialCapacity(50)
+                .maximumSize(serverMaxNum)
                 .expireAfterWrite(30, TimeUnit.SECONDS)
                 .removalListener(new CacheRemovalListener());
     }

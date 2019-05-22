@@ -4,7 +4,9 @@ public class Constants {
 
     public static final int MISS_PACKET_NUM = 3;
 
-    public static final String CACHE_NAME = "nodes";
+    public static final String NODE_CACHE_NAME = "nodes";
+
+    public static final String SERVER_CACHE_NAME = "servers";
 
     public static final int TASK_DURATION = 30;
 

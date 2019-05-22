@@ -16,6 +16,7 @@ external:
   server:
     netty:
       port: 18001
+    max: 300
 
 logging:
   file: ../logs/cc-server.log

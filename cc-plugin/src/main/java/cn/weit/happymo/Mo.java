@@ -4,6 +4,7 @@ import cn.weit.happymo.dto.RegisterInfo;
 import cn.weit.happymo.exception.ExceptionCode;
 import cn.weit.happymo.exception.MoException;
 import cn.weit.happymo.message.MoRequest;
+import cn.weit.happymo.message.ServerState;
 import cn.weit.happymo.server.MoClient;
 
 import java.util.Arrays;
@@ -60,7 +61,7 @@ public final class Mo {
         registerInfo.setIp(localIp);
         registerInfo.setPort(localPort);
         registerInfo.setServerName(serverName);
-        registerInfo.setStatus(1);
+        registerInfo.setStatus(ServerState.State.Alive);
         MoRequest.MoRequestMsg requestMsg = RegisterInfo.convert(registerInfo);
         moClient.sendMsg(requestMsg);
     }

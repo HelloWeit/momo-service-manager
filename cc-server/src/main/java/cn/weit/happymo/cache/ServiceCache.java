@@ -1,6 +1,7 @@
 package cn.weit.happymo.cache;
 
 import cn.weit.happymo.dto.HeartbeatInfo;
+import cn.weit.happymo.dto.RegisterInfo;
 import cn.weit.happymo.dto.SyncApiInfo;
 import com.google.common.collect.Lists;
 import io.netty.channel.Channel;
@@ -48,7 +49,7 @@ public class ServiceCache {
 
     public void addNode(HeartbeatInfo heartbeatInfo) {
         InetSocketAddress inetSocketAddress = new InetSocketAddress(heartbeatInfo.getIp(), heartbeatInfo.getPort());
-        caffineCache.addOne(NODE_PREFIX + heartbeatInfo.getServerName(), inetSocketAddress);
+        caffineCache.addOneNode(NODE_PREFIX + heartbeatInfo.getServerName(), inetSocketAddress);
     }
 
     public void addApi(SyncApiInfo syncApiInfo) {
@@ -74,7 +75,7 @@ public class ServiceCache {
 
     public InetSocketAddress chooseRandom() {
         final Random rng = new Random(System.currentTimeMillis());
-        final List<InetSocketAddress> list = caffineCache.getAll();
+        final List<InetSocketAddress> list = caffineCache.getAllNode();
         if (list == null || list.isEmpty()) {
             return null;
         }
@@ -82,7 +83,7 @@ public class ServiceCache {
     }
 
     public List<InetSocketAddress> chooseSample(final int num) {
-        final List<InetSocketAddress> list = caffineCache.getAll();
+        final List<InetSocketAddress> list = caffineCache.getAllNode();
         if (list == null || list.isEmpty()) {
             return Lists.newArrayList();
         }
@@ -92,6 +93,15 @@ public class ServiceCache {
                 .distinct()
                 .mapToObj(list::get)
                 .collect(Collectors.toList());
+    }
+
+    public void addServer(RegisterInfo registerInfo) {
+        InetSocketAddress inetSocketAddress = new InetSocketAddress(registerInfo.getIp(), registerInfo.getPort());
+        caffineCache.addOneNode(NODE_PREFIX + registerInfo.getServerName(), inetSocketAddress);
+    }
+
+    public void delServer(RegisterInfo registerInfo) {
+
     }
 
 }

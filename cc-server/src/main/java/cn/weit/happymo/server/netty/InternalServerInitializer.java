@@ -2,6 +2,7 @@ package cn.weit.happymo.server.netty;
 
 import cn.weit.happymo.handler.internal.GossipHandler;
 import cn.weit.happymo.message.MoRequest;
+import cn.weit.happymo.message.MoResponse;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.DatagramChannel;
