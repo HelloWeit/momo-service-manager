@@ -62,11 +62,14 @@ public class GossipHandler extends SimpleChannelInboundHandler<AddressedEnvelope
             }
             final Channel channel = internalServer.getChannel();
             if (syncApiInfo.getUpdateTime() < currentTime) {
-                channel.writeAndFlush(
-                        new DefaultAddressedEnvelope<>(
-                                SyncApiInfo.convert(serviceCache.getApi(syncApiInfo)),
-                                sender, channel.localAddress())
-                );
+                SyncApiInfo syncApiInfo1 = serviceCache.getApi(syncApiInfo);
+                if (syncApiInfo1 != null) {
+                    channel.writeAndFlush(
+                            new DefaultAddressedEnvelope<>(
+                                    SyncApiInfo.convert(syncApiInfo1),
+                                    sender, channel.localAddress())
+                    );
+                }
             }
             return;
         }

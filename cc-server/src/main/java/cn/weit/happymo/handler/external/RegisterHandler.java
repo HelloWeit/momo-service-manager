@@ -4,7 +4,6 @@ import cn.weit.happymo.cache.ServiceCache;
 import cn.weit.happymo.dto.RegisterInfo;
 import cn.weit.happymo.dto.SyncApiInfo;
 import cn.weit.happymo.dto.SyncServerInfo;
-import cn.weit.happymo.message.MoRequest;
 import cn.weit.happymo.message.MoRequest.MoRequestMsg;
 import cn.weit.happymo.message.MsgTypeEnum;
 import cn.weit.happymo.message.ServerState;
@@ -46,7 +45,6 @@ public class RegisterHandler extends ChannelInboundHandlerAdapter {
             serviceCache.addServer(registerInfo);
         } else {
             serviceCache.delServer(registerInfo);
-            //todo 清理掉该服务下所有的api 需要把服务名和服务下apikey做个映射
         }
         SyncServerInfo syncServerInfo = SyncServerInfo.convert(moRequestMsg);
         internalServer.randomSendMsg(SyncServerInfo.convert(syncServerInfo));
@@ -65,16 +63,19 @@ public class RegisterHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        InetSocketAddress insocket = (InetSocketAddress) ctx.channel().remoteAddress();
-        serviceCache.putChannel(insocket, ctx.channel());
+        InetSocketAddress inetSocketAddress = (InetSocketAddress) ctx.channel().remoteAddress();
+        serviceCache.putChannel(inetSocketAddress, ctx.channel());
 
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        InetSocketAddress insocket = (InetSocketAddress) ctx.channel().remoteAddress();
-        serviceCache.removeChannel(insocket);
-        //todo udpclient 随机选择内部节点汇报
+        InetSocketAddress inetSocketAddress = (InetSocketAddress) ctx.channel().remoteAddress();
+        serviceCache.removeChannel(inetSocketAddress);
+        // 通知内部节点有client掉线了
+        SyncServerInfo syncServerInfo = SyncServerInfo.convert(inetSocketAddress, serviceCache.getServerName(inetSocketAddress), ServerState.State.Dead);
+        internalServer.randomSendMsg(SyncServerInfo.convert(syncServerInfo));
+        // todo 通知关注该client的外部client 该client掉线了
     }
 
     @Override

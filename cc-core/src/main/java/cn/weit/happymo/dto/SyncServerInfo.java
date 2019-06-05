@@ -5,6 +5,8 @@ import cn.weit.happymo.message.MsgTypeEnum;
 import cn.weit.happymo.message.ServerState;
 import lombok.Data;
 
+import java.net.InetSocketAddress;
+
 /**
  * @author weitong
  */
@@ -43,5 +45,17 @@ public class SyncServerInfo {
         builder.setState(syncServerInfo.getState());
         builder.setUpdateTime(syncServerInfo.getUpdateTime());
         return builder.build();
+    }
+
+    public static SyncServerInfo convert(InetSocketAddress inetSocketAddress, String serverName, ServerState.State state) {
+        SyncServerInfo syncServerInfo = new SyncServerInfo();
+        syncServerInfo.setServerName(serverName);
+        syncServerInfo.setIp(inetSocketAddress.getHostName());
+        syncServerInfo.setPort(inetSocketAddress.getPort());
+        syncServerInfo.setState(state);
+        syncServerInfo.setUpdateTime(System.currentTimeMillis());
+        syncServerInfo.setVersion(1);
+        return syncServerInfo;
+
     }
 }
