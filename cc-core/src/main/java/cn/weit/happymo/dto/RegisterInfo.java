@@ -1,12 +1,9 @@
 package cn.weit.happymo.dto;
 
 import cn.weit.happymo.message.MsgTypeEnum;
-import cn.weit.happymo.message.ServerState;
 import cn.weit.happymo.message.ServerState.State;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
-
-import java.net.InetSocketAddress;
 
 import static cn.weit.happymo.message.MoRequest.MoRequestMsg;
 
