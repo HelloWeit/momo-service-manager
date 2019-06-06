@@ -50,7 +50,7 @@ public final class ServerState {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -59,7 +59,7 @@ public final class ServerState {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static State valueOf(int value) {
       return forNumber(value);
     }
@@ -95,7 +95,7 @@ public final class ServerState {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return cn.weit.happymo.message.ServerState.getDescriptor().getEnumTypes().get(0);
+      return ServerState.getDescriptor().getEnumTypes().get(0);
     }
 
     private static final State[] VALUES = values();
@@ -103,7 +103,7 @@ public final class ServerState {
     public static State valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -129,7 +129,7 @@ public final class ServerState {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    java.lang.String[] descriptorData = {
+    String[] descriptorData = {
       "\n\013State.proto\022\027cn.weit.happymo.message*)" +
       "\n\005State\022\t\n\005Alive\020\000\022\013\n\007Suspect\020\001\022\010\n\004Dead\020" +
       "\002B\rB\013ServerStateb\006proto3"

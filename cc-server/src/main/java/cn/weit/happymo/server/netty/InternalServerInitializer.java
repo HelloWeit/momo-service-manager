@@ -2,8 +2,6 @@ package cn.weit.happymo.server.netty;
 
 import cn.weit.happymo.handler.internal.GossipHandler;
 import cn.weit.happymo.message.MoRequest;
-import cn.weit.happymo.message.MoResponse;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.DatagramChannel;
 import io.netty.handler.codec.DatagramPacketDecoder;
@@ -11,7 +9,6 @@ import io.netty.handler.codec.DatagramPacketEncoder;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 /**
  * @author weitong

@@ -6,7 +6,7 @@ package cn.weit.happymo.exception;
 public class MoException extends RuntimeException {
 	private Integer code;
 
-	public MoException(Integer code, String message) {
+	private MoException(Integer code, String message) {
 		super(message);
 		this.code = code;
 	}

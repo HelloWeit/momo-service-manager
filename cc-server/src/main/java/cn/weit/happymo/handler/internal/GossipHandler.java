@@ -4,13 +4,14 @@ import cn.weit.happymo.cache.ServiceCache;
 import cn.weit.happymo.dto.HeartbeatInfo;
 import cn.weit.happymo.dto.SyncApiInfo;
 import cn.weit.happymo.message.MoRequest.MoRequestMsg;
-import cn.weit.happymo.message.ServerState;
 import cn.weit.happymo.server.netty.InternalServer;
 import io.netty.channel.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.InetSocketAddress;
+
+import static cn.weit.happymo.message.ServerState.State;
 
 /**
  * @author weitong
@@ -55,7 +56,7 @@ public class GossipHandler extends SimpleChannelInboundHandler<AddressedEnvelope
     }
 
     private void handleSyncMsg(InetSocketAddress sender, SyncApiInfo syncApiInfo) {
-        if (syncApiInfo.getState().equals(ServerState.State.Alive)) {
+        if (syncApiInfo.getState().equals(State.Alive)) {
             long currentTime = serviceCache.getApiTime(syncApiInfo);
             if (syncApiInfo.getUpdateTime() > currentTime) {
                 serviceCache.addApi(syncApiInfo);

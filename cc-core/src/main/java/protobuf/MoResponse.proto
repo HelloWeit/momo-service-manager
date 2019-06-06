@@ -9,8 +9,9 @@ package cn.weit.happymo.message;
 option java_outer_classname = "MoResponse";
 
 message MoResponseMsg {
-    MsgType msgType = 1;
-    int32 version = 2;
-    State state = 3;
-    string cause = 4;
+    int32 msgId = 1;
+    MsgType msgType = 2;
+    int32 version = 3;
+    State state = 4;
+    string cause = 5;
 }

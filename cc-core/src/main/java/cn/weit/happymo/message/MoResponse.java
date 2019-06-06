@@ -19,34 +19,39 @@ public final class MoResponse {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.cn.weit.happymo.message.MsgType msgType = 1;</code>
+     * <code>int32 msgId = 1;</code>
+     */
+    int getMsgId();
+
+    /**
+     * <code>.cn.weit.happymo.message.MsgType msgType = 2;</code>
      */
     int getMsgTypeValue();
     /**
-     * <code>.cn.weit.happymo.message.MsgType msgType = 1;</code>
+     * <code>.cn.weit.happymo.message.MsgType msgType = 2;</code>
      */
-    cn.weit.happymo.message.MsgTypeEnum.MsgType getMsgType();
+    MsgTypeEnum.MsgType getMsgType();
 
     /**
-     * <code>int32 version = 2;</code>
+     * <code>int32 version = 3;</code>
      */
     int getVersion();
 
     /**
-     * <code>.cn.weit.happymo.message.State state = 3;</code>
+     * <code>.cn.weit.happymo.message.State state = 4;</code>
      */
     int getStateValue();
     /**
-     * <code>.cn.weit.happymo.message.State state = 3;</code>
+     * <code>.cn.weit.happymo.message.State state = 4;</code>
      */
-    cn.weit.happymo.message.ServerState.State getState();
+    ServerState.State getState();
 
     /**
-     * <code>string cause = 4;</code>
+     * <code>string cause = 5;</code>
      */
-    java.lang.String getCause();
+    String getCause();
     /**
-     * <code>string cause = 4;</code>
+     * <code>string cause = 5;</code>
      */
     com.google.protobuf.ByteString
         getCauseBytes();
@@ -69,7 +74,7 @@ public final class MoResponse {
       cause_ = "";
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -80,7 +85,7 @@ public final class MoResponse {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -94,24 +99,29 @@ public final class MoResponse {
               done = true;
               break;
             case 8: {
+
+              msgId_ = input.readInt32();
+              break;
+            }
+            case 16: {
               int rawValue = input.readEnum();
 
               msgType_ = rawValue;
               break;
             }
-            case 16: {
+            case 24: {
 
               version_ = input.readInt32();
               break;
             }
-            case 24: {
+            case 32: {
               int rawValue = input.readEnum();
 
               state_ = rawValue;
               break;
             }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 42: {
+              String s = input.readStringRequireUtf8();
 
               cause_ = s;
               break;
@@ -137,87 +147,96 @@ public final class MoResponse {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return cn.weit.happymo.message.MoResponse.internal_static_cn_weit_happymo_message_MoResponseMsg_descriptor;
+      return MoResponse.internal_static_cn_weit_happymo_message_MoResponseMsg_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return cn.weit.happymo.message.MoResponse.internal_static_cn_weit_happymo_message_MoResponseMsg_fieldAccessorTable
+      return MoResponse.internal_static_cn_weit_happymo_message_MoResponseMsg_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              cn.weit.happymo.message.MoResponse.MoResponseMsg.class, cn.weit.happymo.message.MoResponse.MoResponseMsg.Builder.class);
+              MoResponse.MoResponseMsg.class, MoResponse.MoResponseMsg.Builder.class);
     }
 
-    public static final int MSGTYPE_FIELD_NUMBER = 1;
+    public static final int MSGID_FIELD_NUMBER = 1;
+    private int msgId_;
+    /**
+     * <code>int32 msgId = 1;</code>
+     */
+    public int getMsgId() {
+      return msgId_;
+    }
+
+    public static final int MSGTYPE_FIELD_NUMBER = 2;
     private int msgType_;
     /**
-     * <code>.cn.weit.happymo.message.MsgType msgType = 1;</code>
+     * <code>.cn.weit.happymo.message.MsgType msgType = 2;</code>
      */
     public int getMsgTypeValue() {
       return msgType_;
     }
     /**
-     * <code>.cn.weit.happymo.message.MsgType msgType = 1;</code>
+     * <code>.cn.weit.happymo.message.MsgType msgType = 2;</code>
      */
-    public cn.weit.happymo.message.MsgTypeEnum.MsgType getMsgType() {
+    public MsgTypeEnum.MsgType getMsgType() {
       @SuppressWarnings("deprecation")
-      cn.weit.happymo.message.MsgTypeEnum.MsgType result = cn.weit.happymo.message.MsgTypeEnum.MsgType.valueOf(msgType_);
-      return result == null ? cn.weit.happymo.message.MsgTypeEnum.MsgType.UNRECOGNIZED : result;
+      MsgTypeEnum.MsgType result = MsgTypeEnum.MsgType.valueOf(msgType_);
+      return result == null ? MsgTypeEnum.MsgType.UNRECOGNIZED : result;
     }
 
-    public static final int VERSION_FIELD_NUMBER = 2;
+    public static final int VERSION_FIELD_NUMBER = 3;
     private int version_;
     /**
-     * <code>int32 version = 2;</code>
+     * <code>int32 version = 3;</code>
      */
     public int getVersion() {
       return version_;
     }
 
-    public static final int STATE_FIELD_NUMBER = 3;
+    public static final int STATE_FIELD_NUMBER = 4;
     private int state_;
     /**
-     * <code>.cn.weit.happymo.message.State state = 3;</code>
+     * <code>.cn.weit.happymo.message.State state = 4;</code>
      */
     public int getStateValue() {
       return state_;
     }
     /**
-     * <code>.cn.weit.happymo.message.State state = 3;</code>
+     * <code>.cn.weit.happymo.message.State state = 4;</code>
      */
-    public cn.weit.happymo.message.ServerState.State getState() {
+    public ServerState.State getState() {
       @SuppressWarnings("deprecation")
-      cn.weit.happymo.message.ServerState.State result = cn.weit.happymo.message.ServerState.State.valueOf(state_);
-      return result == null ? cn.weit.happymo.message.ServerState.State.UNRECOGNIZED : result;
+      ServerState.State result = ServerState.State.valueOf(state_);
+      return result == null ? ServerState.State.UNRECOGNIZED : result;
     }
 
-    public static final int CAUSE_FIELD_NUMBER = 4;
-    private volatile java.lang.Object cause_;
+    public static final int CAUSE_FIELD_NUMBER = 5;
+    private volatile Object cause_;
     /**
-     * <code>string cause = 4;</code>
+     * <code>string cause = 5;</code>
      */
-    public java.lang.String getCause() {
-      java.lang.Object ref = cause_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getCause() {
+      Object ref = cause_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         cause_ = s;
         return s;
       }
     }
     /**
-     * <code>string cause = 4;</code>
+     * <code>string cause = 5;</code>
      */
     public com.google.protobuf.ByteString
         getCauseBytes() {
-      java.lang.Object ref = cause_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+      Object ref = cause_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         cause_ = b;
         return b;
       } else {
@@ -226,7 +245,7 @@ public final class MoResponse {
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -236,60 +255,69 @@ public final class MoResponse {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (msgType_ != cn.weit.happymo.message.MsgTypeEnum.MsgType.HEARTBEAT.getNumber()) {
-        output.writeEnum(1, msgType_);
+      if (msgId_ != 0) {
+        output.writeInt32(1, msgId_);
+      }
+      if (msgType_ != MsgTypeEnum.MsgType.HEARTBEAT.getNumber()) {
+        output.writeEnum(2, msgType_);
       }
       if (version_ != 0) {
-        output.writeInt32(2, version_);
+        output.writeInt32(3, version_);
       }
-      if (state_ != cn.weit.happymo.message.ServerState.State.Alive.getNumber()) {
-        output.writeEnum(3, state_);
+      if (state_ != ServerState.State.Alive.getNumber()) {
+        output.writeEnum(4, state_);
       }
       if (!getCauseBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, cause_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, cause_);
       }
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
-      if (msgType_ != cn.weit.happymo.message.MsgTypeEnum.MsgType.HEARTBEAT.getNumber()) {
+      if (msgId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, msgType_);
+          .computeInt32Size(1, msgId_);
+      }
+      if (msgType_ != MsgTypeEnum.MsgType.HEARTBEAT.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, msgType_);
       }
       if (version_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, version_);
+          .computeInt32Size(3, version_);
       }
-      if (state_ != cn.weit.happymo.message.ServerState.State.Alive.getNumber()) {
+      if (state_ != ServerState.State.Alive.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, state_);
+          .computeEnumSize(4, state_);
       }
       if (!getCauseBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, cause_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, cause_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof cn.weit.happymo.message.MoResponse.MoResponseMsg)) {
+      if (!(obj instanceof MoResponse.MoResponseMsg)) {
         return super.equals(obj);
       }
-      cn.weit.happymo.message.MoResponse.MoResponseMsg other = (cn.weit.happymo.message.MoResponse.MoResponseMsg) obj;
+      MoResponse.MoResponseMsg other = (MoResponse.MoResponseMsg) obj;
 
+      if (getMsgId()
+          != other.getMsgId()) return false;
       if (msgType_ != other.msgType_) return false;
       if (getVersion()
           != other.getVersion()) return false;
@@ -300,13 +328,15 @@ public final class MoResponse {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + MSGID_FIELD_NUMBER;
+      hash = (53 * hash) + getMsgId();
       hash = (37 * hash) + MSGTYPE_FIELD_NUMBER;
       hash = (53 * hash) + msgType_;
       hash = (37 * hash) + VERSION_FIELD_NUMBER;
@@ -320,69 +350,69 @@ public final class MoResponse {
       return hash;
     }
 
-    public static cn.weit.happymo.message.MoResponse.MoResponseMsg parseFrom(
+    public static MoResponse.MoResponseMsg parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static cn.weit.happymo.message.MoResponse.MoResponseMsg parseFrom(
+    public static MoResponse.MoResponseMsg parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static cn.weit.happymo.message.MoResponse.MoResponseMsg parseFrom(
+    public static MoResponse.MoResponseMsg parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static cn.weit.happymo.message.MoResponse.MoResponseMsg parseFrom(
+    public static MoResponse.MoResponseMsg parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static cn.weit.happymo.message.MoResponse.MoResponseMsg parseFrom(byte[] data)
+    public static MoResponse.MoResponseMsg parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static cn.weit.happymo.message.MoResponse.MoResponseMsg parseFrom(
+    public static MoResponse.MoResponseMsg parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static cn.weit.happymo.message.MoResponse.MoResponseMsg parseFrom(java.io.InputStream input)
+    public static MoResponse.MoResponseMsg parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static cn.weit.happymo.message.MoResponse.MoResponseMsg parseFrom(
+    public static MoResponse.MoResponseMsg parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static cn.weit.happymo.message.MoResponse.MoResponseMsg parseDelimitedFrom(java.io.InputStream input)
+    public static MoResponse.MoResponseMsg parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static cn.weit.happymo.message.MoResponse.MoResponseMsg parseDelimitedFrom(
+    public static MoResponse.MoResponseMsg parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static cn.weit.happymo.message.MoResponse.MoResponseMsg parseFrom(
+    public static MoResponse.MoResponseMsg parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static cn.weit.happymo.message.MoResponse.MoResponseMsg parseFrom(
+    public static MoResponse.MoResponseMsg parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -390,23 +420,23 @@ public final class MoResponse {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(cn.weit.happymo.message.MoResponse.MoResponseMsg prototype) {
+    public static Builder newBuilder(MoResponse.MoResponseMsg prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -416,18 +446,18 @@ public final class MoResponse {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:cn.weit.happymo.message.MoResponseMsg)
-        cn.weit.happymo.message.MoResponse.MoResponseMsgOrBuilder {
+        MoResponse.MoResponseMsgOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return cn.weit.happymo.message.MoResponse.internal_static_cn_weit_happymo_message_MoResponseMsg_descriptor;
+        return MoResponse.internal_static_cn_weit_happymo_message_MoResponseMsg_descriptor;
       }
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      @Override
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return cn.weit.happymo.message.MoResponse.internal_static_cn_weit_happymo_message_MoResponseMsg_fieldAccessorTable
+        return MoResponse.internal_static_cn_weit_happymo_message_MoResponseMsg_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                cn.weit.happymo.message.MoResponse.MoResponseMsg.class, cn.weit.happymo.message.MoResponse.MoResponseMsg.Builder.class);
+                MoResponse.MoResponseMsg.class, MoResponse.MoResponseMsg.Builder.class);
       }
 
       // Construct using cn.weit.happymo.message.MoResponse.MoResponseMsg.newBuilder()
@@ -436,7 +466,7 @@ public final class MoResponse {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -445,9 +475,11 @@ public final class MoResponse {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
+        msgId_ = 0;
+
         msgType_ = 0;
 
         version_ = 0;
@@ -459,29 +491,30 @@ public final class MoResponse {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return cn.weit.happymo.message.MoResponse.internal_static_cn_weit_happymo_message_MoResponseMsg_descriptor;
+        return MoResponse.internal_static_cn_weit_happymo_message_MoResponseMsg_descriptor;
       }
 
-      @java.lang.Override
-      public cn.weit.happymo.message.MoResponse.MoResponseMsg getDefaultInstanceForType() {
-        return cn.weit.happymo.message.MoResponse.MoResponseMsg.getDefaultInstance();
+      @Override
+      public MoResponse.MoResponseMsg getDefaultInstanceForType() {
+        return MoResponse.MoResponseMsg.getDefaultInstance();
       }
 
-      @java.lang.Override
-      public cn.weit.happymo.message.MoResponse.MoResponseMsg build() {
-        cn.weit.happymo.message.MoResponse.MoResponseMsg result = buildPartial();
+      @Override
+      public MoResponse.MoResponseMsg build() {
+        MoResponse.MoResponseMsg result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @java.lang.Override
-      public cn.weit.happymo.message.MoResponse.MoResponseMsg buildPartial() {
-        cn.weit.happymo.message.MoResponse.MoResponseMsg result = new cn.weit.happymo.message.MoResponse.MoResponseMsg(this);
+      @Override
+      public MoResponse.MoResponseMsg buildPartial() {
+        MoResponse.MoResponseMsg result = new MoResponse.MoResponseMsg(this);
+        result.msgId_ = msgId_;
         result.msgType_ = msgType_;
         result.version_ = version_;
         result.state_ = state_;
@@ -490,50 +523,53 @@ public final class MoResponse {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof cn.weit.happymo.message.MoResponse.MoResponseMsg) {
-          return mergeFrom((cn.weit.happymo.message.MoResponse.MoResponseMsg)other);
+        if (other instanceof MoResponse.MoResponseMsg) {
+          return mergeFrom((MoResponse.MoResponseMsg)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(cn.weit.happymo.message.MoResponse.MoResponseMsg other) {
-        if (other == cn.weit.happymo.message.MoResponse.MoResponseMsg.getDefaultInstance()) return this;
+      public Builder mergeFrom(MoResponse.MoResponseMsg other) {
+        if (other == MoResponse.MoResponseMsg.getDefaultInstance()) return this;
+        if (other.getMsgId() != 0) {
+          setMsgId(other.getMsgId());
+        }
         if (other.msgType_ != 0) {
           setMsgTypeValue(other.getMsgTypeValue());
         }
@@ -552,21 +588,21 @@ public final class MoResponse {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cn.weit.happymo.message.MoResponse.MoResponseMsg parsedMessage = null;
+        MoResponse.MoResponseMsg parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cn.weit.happymo.message.MoResponse.MoResponseMsg) e.getUnfinishedMessage();
+          parsedMessage = (MoResponse.MoResponseMsg) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -576,15 +612,41 @@ public final class MoResponse {
         return this;
       }
 
+      private int msgId_ ;
+      /**
+       * <code>int32 msgId = 1;</code>
+       */
+      public int getMsgId() {
+        return msgId_;
+      }
+      /**
+       * <code>int32 msgId = 1;</code>
+       */
+      public Builder setMsgId(int value) {
+
+        msgId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 msgId = 1;</code>
+       */
+      public Builder clearMsgId() {
+
+        msgId_ = 0;
+        onChanged();
+        return this;
+      }
+
       private int msgType_ = 0;
       /**
-       * <code>.cn.weit.happymo.message.MsgType msgType = 1;</code>
+       * <code>.cn.weit.happymo.message.MsgType msgType = 2;</code>
        */
       public int getMsgTypeValue() {
         return msgType_;
       }
       /**
-       * <code>.cn.weit.happymo.message.MsgType msgType = 1;</code>
+       * <code>.cn.weit.happymo.message.MsgType msgType = 2;</code>
        */
       public Builder setMsgTypeValue(int value) {
         msgType_ = value;
@@ -592,30 +654,30 @@ public final class MoResponse {
         return this;
       }
       /**
-       * <code>.cn.weit.happymo.message.MsgType msgType = 1;</code>
+       * <code>.cn.weit.happymo.message.MsgType msgType = 2;</code>
        */
-      public cn.weit.happymo.message.MsgTypeEnum.MsgType getMsgType() {
+      public MsgTypeEnum.MsgType getMsgType() {
         @SuppressWarnings("deprecation")
-        cn.weit.happymo.message.MsgTypeEnum.MsgType result = cn.weit.happymo.message.MsgTypeEnum.MsgType.valueOf(msgType_);
-        return result == null ? cn.weit.happymo.message.MsgTypeEnum.MsgType.UNRECOGNIZED : result;
+        MsgTypeEnum.MsgType result = MsgTypeEnum.MsgType.valueOf(msgType_);
+        return result == null ? MsgTypeEnum.MsgType.UNRECOGNIZED : result;
       }
       /**
-       * <code>.cn.weit.happymo.message.MsgType msgType = 1;</code>
+       * <code>.cn.weit.happymo.message.MsgType msgType = 2;</code>
        */
-      public Builder setMsgType(cn.weit.happymo.message.MsgTypeEnum.MsgType value) {
+      public Builder setMsgType(MsgTypeEnum.MsgType value) {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+
         msgType_ = value.getNumber();
         onChanged();
         return this;
       }
       /**
-       * <code>.cn.weit.happymo.message.MsgType msgType = 1;</code>
+       * <code>.cn.weit.happymo.message.MsgType msgType = 2;</code>
        */
       public Builder clearMsgType() {
-        
+
         msgType_ = 0;
         onChanged();
         return this;
@@ -623,25 +685,25 @@ public final class MoResponse {
 
       private int version_ ;
       /**
-       * <code>int32 version = 2;</code>
+       * <code>int32 version = 3;</code>
        */
       public int getVersion() {
         return version_;
       }
       /**
-       * <code>int32 version = 2;</code>
+       * <code>int32 version = 3;</code>
        */
       public Builder setVersion(int value) {
-        
+
         version_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 version = 2;</code>
+       * <code>int32 version = 3;</code>
        */
       public Builder clearVersion() {
-        
+
         version_ = 0;
         onChanged();
         return this;
@@ -649,13 +711,13 @@ public final class MoResponse {
 
       private int state_ = 0;
       /**
-       * <code>.cn.weit.happymo.message.State state = 3;</code>
+       * <code>.cn.weit.happymo.message.State state = 4;</code>
        */
       public int getStateValue() {
         return state_;
       }
       /**
-       * <code>.cn.weit.happymo.message.State state = 3;</code>
+       * <code>.cn.weit.happymo.message.State state = 4;</code>
        */
       public Builder setStateValue(int value) {
         state_ = value;
@@ -663,61 +725,61 @@ public final class MoResponse {
         return this;
       }
       /**
-       * <code>.cn.weit.happymo.message.State state = 3;</code>
+       * <code>.cn.weit.happymo.message.State state = 4;</code>
        */
-      public cn.weit.happymo.message.ServerState.State getState() {
+      public ServerState.State getState() {
         @SuppressWarnings("deprecation")
-        cn.weit.happymo.message.ServerState.State result = cn.weit.happymo.message.ServerState.State.valueOf(state_);
-        return result == null ? cn.weit.happymo.message.ServerState.State.UNRECOGNIZED : result;
+        ServerState.State result = ServerState.State.valueOf(state_);
+        return result == null ? ServerState.State.UNRECOGNIZED : result;
       }
       /**
-       * <code>.cn.weit.happymo.message.State state = 3;</code>
+       * <code>.cn.weit.happymo.message.State state = 4;</code>
        */
-      public Builder setState(cn.weit.happymo.message.ServerState.State value) {
+      public Builder setState(ServerState.State value) {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+
         state_ = value.getNumber();
         onChanged();
         return this;
       }
       /**
-       * <code>.cn.weit.happymo.message.State state = 3;</code>
+       * <code>.cn.weit.happymo.message.State state = 4;</code>
        */
       public Builder clearState() {
-        
+
         state_ = 0;
         onChanged();
         return this;
       }
 
-      private java.lang.Object cause_ = "";
+      private Object cause_ = "";
       /**
-       * <code>string cause = 4;</code>
+       * <code>string cause = 5;</code>
        */
-      public java.lang.String getCause() {
-        java.lang.Object ref = cause_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getCause() {
+        Object ref = cause_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           cause_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
-       * <code>string cause = 4;</code>
+       * <code>string cause = 5;</code>
        */
       public com.google.protobuf.ByteString
           getCauseBytes() {
-        java.lang.Object ref = cause_;
+        Object ref = cause_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           cause_ = b;
           return b;
         } else {
@@ -725,29 +787,29 @@ public final class MoResponse {
         }
       }
       /**
-       * <code>string cause = 4;</code>
+       * <code>string cause = 5;</code>
        */
       public Builder setCause(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  
+
         cause_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string cause = 4;</code>
+       * <code>string cause = 5;</code>
        */
       public Builder clearCause() {
-        
+
         cause_ = getDefaultInstance().getCause();
         onChanged();
         return this;
       }
       /**
-       * <code>string cause = 4;</code>
+       * <code>string cause = 5;</code>
        */
       public Builder setCauseBytes(
           com.google.protobuf.ByteString value) {
@@ -755,18 +817,18 @@ public final class MoResponse {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-        
+
         cause_ = value;
         onChanged();
         return this;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -777,18 +839,18 @@ public final class MoResponse {
     }
 
     // @@protoc_insertion_point(class_scope:cn.weit.happymo.message.MoResponseMsg)
-    private static final cn.weit.happymo.message.MoResponse.MoResponseMsg DEFAULT_INSTANCE;
+    private static final MoResponse.MoResponseMsg DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new cn.weit.happymo.message.MoResponse.MoResponseMsg();
+      DEFAULT_INSTANCE = new MoResponse.MoResponseMsg();
     }
 
-    public static cn.weit.happymo.message.MoResponse.MoResponseMsg getDefaultInstance() {
+    public static MoResponse.MoResponseMsg getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<MoResponseMsg>
         PARSER = new com.google.protobuf.AbstractParser<MoResponseMsg>() {
-      @java.lang.Override
+      @Override
       public MoResponseMsg parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -801,13 +863,13 @@ public final class MoResponse {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<MoResponseMsg> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
-    public cn.weit.happymo.message.MoResponse.MoResponseMsg getDefaultInstanceForType() {
+    @Override
+    public MoResponse.MoResponseMsg getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -815,7 +877,7 @@ public final class MoResponse {
 
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cn_weit_happymo_message_MoResponseMsg_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cn_weit_happymo_message_MoResponseMsg_fieldAccessorTable;
 
@@ -826,14 +888,14 @@ public final class MoResponse {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    java.lang.String[] descriptorData = {
+    String[] descriptorData = {
       "\n\020MoResponse.proto\022\027cn.weit.happymo.mess" +
-      "age\032\rMsgType.proto\032\013State.proto\"\221\001\n\rMoRe" +
-      "sponseMsg\0221\n\007msgType\030\001 \001(\0162 .cn.weit.hap" +
-      "pymo.message.MsgType\022\017\n\007version\030\002 \001(\005\022-\n" +
-      "\005state\030\003 \001(\0162\036.cn.weit.happymo.message.S" +
-      "tate\022\r\n\005cause\030\004 \001(\tB\014B\nMoResponseP\000P\001b\006p" +
-      "roto3"
+      "age\032\rMsgType.proto\032\013State.proto\"\240\001\n\rMoRe" +
+      "sponseMsg\022\r\n\005msgId\030\001 \001(\005\0221\n\007msgType\030\002 \001(" +
+      "\0162 .cn.weit.happymo.message.MsgType\022\017\n\007v" +
+      "ersion\030\003 \001(\005\022-\n\005state\030\004 \001(\0162\036.cn.weit.ha" +
+      "ppymo.message.State\022\r\n\005cause\030\005 \001(\tB\014B\nMo" +
+      "ResponseP\000P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -846,17 +908,17 @@ public final class MoResponse {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          cn.weit.happymo.message.MsgTypeEnum.getDescriptor(),
-          cn.weit.happymo.message.ServerState.getDescriptor(),
+          MsgTypeEnum.getDescriptor(),
+          ServerState.getDescriptor(),
         }, assigner);
     internal_static_cn_weit_happymo_message_MoResponseMsg_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_cn_weit_happymo_message_MoResponseMsg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_cn_weit_happymo_message_MoResponseMsg_descriptor,
-        new java.lang.String[] { "MsgType", "Version", "State", "Cause", });
-    cn.weit.happymo.message.MsgTypeEnum.getDescriptor();
-    cn.weit.happymo.message.ServerState.getDescriptor();
+        new String[] { "MsgId", "MsgType", "Version", "State", "Cause", });
+    MsgTypeEnum.getDescriptor();
+    ServerState.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

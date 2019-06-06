@@ -1,5 +1,6 @@
 package cn.weit.happymo.dto;
 
+import cn.weit.happymo.message.MoRequest;
 import cn.weit.happymo.message.MoRequest.MoRequestMsg;
 import cn.weit.happymo.message.MsgTypeEnum;
 import cn.weit.happymo.message.ServerState;
@@ -39,8 +40,7 @@ public class SyncApiInfo {
         syncApiInfo.setMethod(registerInfo.getMethod());
         syncApiInfo.setState(registerInfo.getStatus());
         syncApiInfo.setUpdateTime(System.currentTimeMillis());
-        //todo 版本号需要一个递增的技术器来生成
-        syncApiInfo.setVersion(1);
+        syncApiInfo.setVersion(registerInfo.getVersion());
         return syncApiInfo;
 
     }
@@ -48,16 +48,11 @@ public class SyncApiInfo {
     public static MoRequestMsg convert(SyncApiInfo syncApiInfo) {
         MoRequestMsg.Builder builder = MoRequestMsg.newBuilder();
         builder.setMsgType(MsgTypeEnum.MsgType.GOSSIP_REQ);
-        if (syncApiInfo.getVersion() == null) {
-            //todo 首次发生的版本号需要一个递增的技术器来生成
-            builder.setVersion(1);
-        } else {
-            builder.setVersion(syncApiInfo.getVersion());
-        }
+        builder.setVersion(syncApiInfo.getVersion());
         builder.setServerName(syncApiInfo.getServerName());
         builder.setApiUrl(syncApiInfo.getApiUrl());
         builder.setMethod(syncApiInfo.getMethod());
-        builder.setState(ServerState.State.Alive);
+        builder.setState(State.Alive);
         builder.setUpdateTime(syncApiInfo.getUpdateTime());
         return builder.build();
     }

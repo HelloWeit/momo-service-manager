@@ -9,14 +9,15 @@ package cn.weit.happymo.message;
 option java_outer_classname = "MoRequest";
 
 message MoRequestMsg {
-    MsgType msgType = 1;
-    int32 version = 2;
-    string serverName = 3;
-    string apiUrl = 4;
-    string method = 5;
-    string ip = 6;
-    int32 port = 7;
-    State state = 8;
-    int64 updateTime = 9;
-    map<string, string> map = 10;
+    int32 msgId = 1;
+    MsgType msgType = 2;
+    int32 version = 3;
+    string serverName = 4;
+    string apiUrl = 5;
+    string method = 6;
+    string ip = 7;
+    int32 port = 8;
+    State state = 9;
+    int64 updateTime = 10;
+    map<string, string> map = 11;
 }

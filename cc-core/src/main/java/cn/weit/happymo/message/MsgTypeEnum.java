@@ -74,7 +74,7 @@ public final class MsgTypeEnum {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -83,7 +83,7 @@ public final class MsgTypeEnum {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static MsgType valueOf(int value) {
       return forNumber(value);
     }
@@ -122,7 +122,7 @@ public final class MsgTypeEnum {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return cn.weit.happymo.message.MsgTypeEnum.getDescriptor().getEnumTypes().get(0);
+      return MsgTypeEnum.getDescriptor().getEnumTypes().get(0);
     }
 
     private static final MsgType[] VALUES = values();
@@ -130,7 +130,7 @@ public final class MsgTypeEnum {
     public static MsgType valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -156,7 +156,7 @@ public final class MsgTypeEnum {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    java.lang.String[] descriptorData = {
+    String[] descriptorData = {
       "\n\rMsgType.proto\022\027cn.weit.happymo.message" +
       "*_\n\007MsgType\022\r\n\tHEARTBEAT\020\000\022\n\n\006SERVER\020\001\022\007" +
       "\n\003API\020\002\022\017\n\013GOSSIP_PING\020\003\022\017\n\013GOSSIP_SYNC\020" +

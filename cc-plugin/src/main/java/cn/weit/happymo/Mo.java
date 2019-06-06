@@ -4,7 +4,9 @@ import cn.weit.happymo.dto.RegisterInfo;
 import cn.weit.happymo.exception.ExceptionCode;
 import cn.weit.happymo.exception.MoException;
 import cn.weit.happymo.message.MoRequest;
+import cn.weit.happymo.message.MoRequest.MoRequestMsg;
 import cn.weit.happymo.message.ServerState;
+import cn.weit.happymo.message.ServerState.State;
 import cn.weit.happymo.server.MoClient;
 
 import java.util.Arrays;
@@ -61,13 +63,13 @@ public final class Mo {
         registerInfo.setIp(localIp);
         registerInfo.setPort(localPort);
         registerInfo.setServerName(serverName);
-        registerInfo.setStatus(ServerState.State.Alive);
-        MoRequest.MoRequestMsg requestMsg = RegisterInfo.convert(registerInfo);
+        registerInfo.setStatus(State.Alive);
+        MoRequestMsg requestMsg = RegisterInfo.convert(registerInfo);
         moClient.sendMsg(requestMsg);
     }
 
     public void register(RegisterInfo ... registerInfos) {
-        List<MoRequest.MoRequestMsg> moRequestMsgs = Arrays.stream(registerInfos).map(RegisterInfo::convert).collect(Collectors.toList());
+        List<MoRequestMsg> moRequestMsgs = Arrays.stream(registerInfos).map(RegisterInfo::convert).collect(Collectors.toList());
         //todo 批量发送后面定义 先一条一条发送
         moRequestMsgs.forEach(moRequestMsg-> moClient.sendMsg(moRequestMsg));
 

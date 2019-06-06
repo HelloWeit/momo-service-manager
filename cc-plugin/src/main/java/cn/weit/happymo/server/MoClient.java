@@ -2,7 +2,8 @@ package cn.weit.happymo.server;
 
 import cn.weit.happymo.handler.MoResponseHandler;
 import cn.weit.happymo.message.MoRequest;
-import cn.weit.happymo.message.MoResponse;
+import cn.weit.happymo.message.MoRequest.MoRequestMsg;
+import cn.weit.happymo.message.MoResponse.MoResponseMsg;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -41,7 +42,7 @@ public class MoClient {
                 public void initChannel(SocketChannel ch) throws Exception {
                     ChannelPipeline pipeline = ch.pipeline();
                     pipeline.addLast(new ProtobufVarint32FrameDecoder())
-                            .addLast(new ProtobufDecoder(MoResponse.MoResponseMsg.getDefaultInstance()))
+                            .addLast(new ProtobufDecoder(MoResponseMsg.getDefaultInstance()))
                             .addLast(new ProtobufVarint32LengthFieldPrepender())
                             .addLast(new ProtobufEncoder())
                             .addLast(new MoResponseHandler());
@@ -63,7 +64,7 @@ public class MoClient {
         }
     }
 
-    public void sendMsg(MoRequest.MoRequestMsg requestMsg) {
+    public void sendMsg(MoRequestMsg requestMsg) {
         channel.writeAndFlush(requestMsg);
     }
 

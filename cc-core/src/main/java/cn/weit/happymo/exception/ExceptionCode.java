@@ -9,6 +9,9 @@ import lombok.Getter;
 
 @Getter
 public enum ExceptionCode {
+	/**
+	 *
+	 */
 	PARAM_ERROR(1, "参数错误"),
 	SCAN_ERROR(2, "启动扫描出错"),
 	INIT_ERROR(3, "初始化失败"),

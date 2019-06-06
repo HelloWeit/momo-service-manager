@@ -1,5 +1,6 @@
 package cn.weit.happymo.dto;
 
+import cn.weit.happymo.message.MoRequest;
 import cn.weit.happymo.message.MoRequest.MoRequestMsg;
 import cn.weit.happymo.message.MsgTypeEnum;
 import cn.weit.happymo.message.ServerState;
