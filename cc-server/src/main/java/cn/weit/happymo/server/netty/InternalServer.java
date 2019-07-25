@@ -12,6 +12,7 @@ import io.netty.util.HashedWheelTimer;
 import io.netty.util.Timer;
 import io.netty.util.TimerTask;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,7 @@ import static cn.weit.happymo.constant.Constants.TASK_SLOT;
  * @author weitong
  */
 @Component("internalServer")
+@Slf4j
 public class InternalServer {
     @Value("${internal.server.netty.port}")
     private int port;
@@ -37,11 +39,9 @@ public class InternalServer {
     @Value("$(server.ip")
     private String ip;
     @Autowired
-    private InternalServerInitializer internalServerInitializer;
-    @Autowired
     private ServiceCache serviceCache;
     @Getter
-    private final Channel channel;
+    private Channel channel;
     private final Timer timer = new HashedWheelTimer(TASK_DURATION, TimeUnit.SECONDS, TASK_SLOT);
 
     public InternalServer() throws InterruptedException {
@@ -51,10 +51,17 @@ public class InternalServer {
             b.group(workerGroup).channel(NioDatagramChannel.class)
                     .option(ChannelOption.SO_BROADCAST, true)
                     .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
-                    .handler(internalServerInitializer);
+                    .handler(new InternalServerInitializer(this));
             ChannelFuture f = b.bind(port).sync();
-            this.channel = f.channel();
-            channel.closeFuture().await();
+            f.addListener((ChannelFutureListener) future1 -> {
+                if(future1.isSuccess()){
+                    channel = f.channel();
+                    log.info("InternalServer  started");
+                }else{
+                    log.error("InternalServer start failed");
+                    future1.cause().printStackTrace();
+                }
+            });
         } finally {
             workerGroup.shutdownGracefully();
         }

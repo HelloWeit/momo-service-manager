@@ -20,21 +20,18 @@ public class ExternalServer {
     @Value("${external.server.netty.port}")
     private int externalPort;
 
-    @Autowired
-    private ExternalServerInitializer externalServerInitializer;
-
     void start() {
         EventLoopGroup mainGroup = new NioEventLoopGroup();
         EventLoopGroup subGroup = new NioEventLoopGroup();
         ServerBootstrap server = new ServerBootstrap();
         server.group(mainGroup, subGroup).channel(NioServerSocketChannel.class)
-                .childHandler(externalServerInitializer);
+                .childHandler(new ExternalServerInitializer());
         ChannelFuture future = server.bind(externalPort);
         future.addListener((ChannelFutureListener) future1 -> {
             if(future1.isSuccess()){
-                log.info("Netty server started");
+                log.info("ExternalServer started");
             }else{
-                log.error("server start failed");
+                log.error("ExternalServer failed");
                 future1.cause().printStackTrace();
             }
         });
